@@ -1,5 +1,7 @@
 h1. atmoboot bug quickstart
 
+Bug reproduce for: Atmosphere/Wicket should not create "phantom" HTTP request upon web app startup
+
 h2. Usage
 
 Deploy to Tomcat 7.0.x to @ROOT@ context
