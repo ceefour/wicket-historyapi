@@ -1,0 +1,32 @@
+h1. atmoboot bug quickstart
+
+h2. Usage
+
+Deploy to Tomcat 7.0.x to @ROOT@ context
+
+The logs will say along these lines:
+
+bc. Sep 04, 2013 4:35:23 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 5240 ms
+16:35:23.695 [http-nio-8080-exec-1] DEBUG o.a.w.p.h.servlet.ServletWebRequest - Calculating context relative path from: context path '', filterPrefix '', uri '/'
+16:35:23.707 [http-nio-8080-exec-1] DEBUG o.a.w.p.h.servlet.ServletWebRequest - Calculating context relative path from: context path '', filterPrefix '', uri '/'
+16:35:23.708 [http-nio-8080-exec-1] DEBUG o.a.w.p.h.servlet.ServletWebRequest - Calculating context relative path from: context path '', filterPrefix '', uri '/'
+16:35:23.709 [http-nio-8080-exec-1] DEBUG o.a.w.r.mapper.CompoundRequestMapper - No compatible mapper found for URL ''
+16:35:23.709 [http-nio-8080-exec-1] DEBUG o.a.w.p.h.servlet.ServletWebRequest - Calculating context relative path from: context path '', filterPrefix '', uri '/'
+16:35:23.709 [http-nio-8080-exec-1] DEBUG o.a.w.p.h.servlet.ServletWebRequest - Calculating context relative path from: context path '', filterPrefix '', uri '/'
+16:35:23.719 [http-nio-8080-exec-1] DEBUG o.a.w.p.h.servlet.ServletWebRequest - Calculating context relative path from: context path '', filterPrefix '', uri '/'
+16:35:23.736 [http-nio-8080-exec-1] DEBUG o.a.w.session.DefaultPageFactory - Found constructor for Page of type 'class com.hendyirawan.atmoboot.HomePage' and argument of type 'class org.apache.wicket.request.mapper.parameter.PageParameters'.
+16:35:23.797 [http-nio-8080-exec-1] DEBUG o.a.w.page.PageAccessSynchronizer - 'http-nio-8080-exec-1' attempting to acquire lock to page with id '0'
+16:35:23.797 [http-nio-8080-exec-1] DEBUG o.a.w.page.PageAccessSynchronizer - http-nio-8080-exec-1 acquired lock to page 0
+16:35:23.800 [http-nio-8080-exec-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean 'someRequestBean'
+16:35:23.800 [http-nio-8080-exec-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'appConfig'
+16:35:23.804 [http-nio-8080-exec-1] INFO  com.hendyirawan.atmoboot.AppConfig - got request: 127.0.0.1:40130 to http://localhost:8080/ (localhost:8080)
+16:35:23.804 [http-nio-8080-exec-1] ERROR com.hendyirawan.atmoboot.AppConfig - This web application is NOT meant to be accessed using 'localhost'
+16:35:23.853 [http-nio-8080-exec-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean 'someRequestBean'
+
+The problem is the web application immediately gets a "phantom" HTTP request,
+before any actual HTTP request.
+
+My particular use case is that the web application is multitenant, and should
+not be accessed via 'localhost'. The "phantom" HTTP request always uses
+'localhost' and this causes unnecessary error logging at each web app startup.

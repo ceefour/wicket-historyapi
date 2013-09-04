@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<display-name>atmoboot</display-name>
+
+	<servlet>
+		<description>Atmospherefilter</description>
+		<servlet-name>Atmospherefilter</servlet-name>
+		<servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+		<init-param>
+			<param-name>applicationFactoryClassName</param-name>
+			<param-value>org.apache.wicket.spring.SpringWebApplicationFactory</param-value>
+		</init-param>
+		<init-param>
+			<param-name>applicationBean</param-name>
+			<param-value>webApp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.atmosphere.useWebSocket</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.atmosphere.useNative</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.atmosphere.cpr.sessionSupport</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.atmosphere.cpr.AtmosphereInterceptor</param-name>
+			<param-value>org.atmosphere.interceptor.NginxInterceptor</param-value>
+		</init-param>
+		<init-param>
+			<param-name>filterMappingUrlPattern</param-name>
+			<param-value>/*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.atmosphere.websocket.WebSocketProtocol</param-name>
+			<param-value>org.atmosphere.websocket.protocol.EchoProtocol</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.atmosphere.cpr.broadcastFilterClasses</param-name>
+			<param-value>org.apache.wicket.atmosphere.TrackMessageSizeFilter</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.atmosphere.cpr.broadcasterCacheClass</param-name>
+			<param-value>org.atmosphere.cache.UUIDBroadcasterCache</param-value>
+		</init-param>		
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Atmospherefilter</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>com.hendyirawan.atmoboot.AppConfig</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextInitializerClasses</param-name>
+		<param-value>com.hendyirawan.atmoboot.AppInitializer</param-value>
+	</context-param>
+	<context-param>
+		<param-name>configuration</param-name>
+		<param-value>development</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	
+	<session-config>
+		<!-- session timeout in 2 days, relogin each weekstart -->
+		<session-timeout>2880</session-timeout>
+	</session-config>
+
+</web-app>
