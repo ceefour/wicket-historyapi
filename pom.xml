@@ -50,6 +50,11 @@
 			<artifactId>wicketstuff-annotation</artifactId>
 			<version>6.10.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.wicketstuff</groupId>
+			<artifactId>wicketstuff-stateless</artifactId>
+			<version>6.10.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>

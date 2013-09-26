@@ -1,0 +1,51 @@
+<configuration scan="true" scanPeriod="15 seconds">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+<!-- 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter"> -->
+<!-- 			<level>WARN</level> -->
+<!-- 		</filter> -->
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS, Asia/Jakarta} %-5.5level | %-10.-10mdc{principals} | %-40.40mdc{req.requestURI} %-20.-20mdc{req.queryString} %15.15mdc{req.xForwardedFor} %-20.-20mdc{req.userAgent} | %-16.16thread | %-32.32logger{1} | %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="multiplex" class="de.huxhorn.lilith.logback.appender.ClassicMultiplexSocketAppender">
+	    <Compressing>true</Compressing>
+	    <!-- will automatically use correct default port -->
+	    <!-- Default port for compressed is 10000 and uncompressed 10001 -->
+	    <ReconnectionDelay>10000</ReconnectionDelay>
+	    <IncludeCallerData>true</IncludeCallerData>
+	    <RemoteHosts>localhost</RemoteHosts>
+	    <!-- Alternatively:
+	    <RemoteHost>localhost</RemoteHost>
+	    <RemoteHost>10.200.55.13</RemoteHost>
+	    -->
+	    <!--
+	    Optional:
+	    <CreatingUUID>false</CreatingUUID>
+	    -->
+	</appender>
+
+	<logger name="org.apache.directory.shared" level="INFO" />
+	<logger name="id.co" level="DEBUG" />
+	<logger name="org.soluvas" level="DEBUG" />
+	<logger name="com.soluvas" level="DEBUG" />
+	<logger name="com.hendyirawan" level="DEBUG" />
+	<logger name="org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider" level="WARN"/>
+	<logger name="org.springframework.context.annotation.ClassPathBeanDefinitionScanner" level="WARN"/>
+	<logger name="org.soluvas.web.site.EmfModel" level="DEBUG"/>
+	<logger name="org.skife.jdbi" level="DEBUG"/>
+	<logger name="org.apache.wicket.model.LoadableDetachableModel" level="INFO"/>
+	<!-- https://issues.apache.org/jira/browse/SHIRO-461 -->
+	<logger name="org.apache.shiro.realm.AuthorizingRealm" level="WARN"/>
+	<logger name="org.apache.wicket.atmosphere.EventBus" level="WARN"/>
+	<logger name="org.apache.wicket.atmosphere.AtmosphereBehavior" level="WARN"/>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+<!-- 		<appender-ref ref="multiplex"/> -->
+	</root>
+
+</configuration>

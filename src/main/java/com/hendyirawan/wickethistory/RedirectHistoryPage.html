@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+<head>
+	<title>Redirect</title>
+	<style>
+	.sidebar { float: left; width: 200px; background: #eeeeee; }
+	.main-content { margin-left: 220px; }
+	</style>
+</head>
+<body>
+	<h1>Redirect</h1>
+	<p>Using simple HTTP redirect with PageParameters to provide bookmarkable, without using history API, page is fully stateless.</p>
+	<div class="sidebar">
+		<form wicket:id="facetForm">
+			<h2>Categories</h2>
+			<p><a href="#" wicket:id="dressesLink">Dresses</a>
+			<p><a href="#" wicket:id="shoesLink">Shoes</a>
+			<p><a href="#" wicket:id="bagsLink">Bags</a>
+			<h2>Sizes</h2>
+			<label><input type="checkbox" wicket:id="sSize"> S</input></label>
+			<label><input type="checkbox" wicket:id="mSize"> M</input></label>
+			<label><input type="checkbox" wicket:id="lSize"> L</input></label>
+		</form>
+	</div>
+	<div class="main-content">
+		<section wicket:id="data">
+			<h2>Data</h2>
+			<p>Current category: <wicket:container wicket:id="categoryId">categoryId</wicket:container>
+			<p>Current sizes: <wicket:container wicket:id="sizeQNames">sizeQNames</wicket:container>
+		</section>
+		<h2>Issues</h2>
+		<ol>
+			<li>Of course it's a redirect, not AJAX, but works beautifully as fallback on old browsers (i.e. IE10). 2 requests needed: POST then GET.</li>
+			<li>The @MountPath requires a trailing slash, i.e. <tt>/redirect/</tt> and not just <tt>/redirect</tt>.</li>
+			<li>Using <tt>&lt;wicket:link&gt;</tt>, it's not using the @MountPath but the long form.</li>
+			<li>The <tt>StatelessLink#onClick()</tt> and <tt>Checkbox AbstractWrapModel</tt> code is pretty verbose.</li>
+			<li>Requires <tt>wicketstuff's wicket-stateless</tt> (which rocks BTW :-)</li>
+		</ol>
+		<p><wicket:link><a href="HomePage.html">« Home</a></wicket:link>
+	</div>
+</body>
+</html>
