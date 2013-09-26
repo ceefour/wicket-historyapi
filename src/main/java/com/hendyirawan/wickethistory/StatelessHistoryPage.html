@@ -39,6 +39,9 @@
 			<li>Using <tt>&lt;wicket:link&gt;</tt>, it's not using the @MountPath but the long form.</li>
 			<li>The <tt>StatelessLink#onClick()</tt> and <tt>Checkbox AbstractWrapModel</tt> code is pretty verbose.</li>
 			<li>Requires <tt>wicketstuff's wicket-stateless</tt> (which rocks BTW :-)</li>
+			<li>Requires a stable <tt>setMarkupId()</tt></li>
+			<li>Facet state can be preserved <strong>only partially</strong> using <tt>StatelessAjaxFormComponentUpdatingBehavior#getPageParameters()</tt>, i.e. only for AJAX form submits.
+				During normal <tt>StatelessAjaxFallbackLink</tt>, Facet state is gone/reset</li>
 		</ol>
 		<p><wicket:link><a href="HomePage.html">« Home</a></wicket:link>
 	</div>

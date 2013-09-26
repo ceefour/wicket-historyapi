@@ -28,13 +28,19 @@
 			<p>Current category: <wicket:container wicket:id="categoryId">categoryId</wicket:container>
 			<p>Current sizes: <wicket:container wicket:id="sizeQNames">sizeQNames</wicket:container>
 		</section>
-		<h2>Issues</h2>
+		<h2>Pros</h2>
+		<ol>
+			<li>State is beautifully preserved.</li>
+			<li>Works flawlessly with all browsers, especially Googlebot.</li>
+		</ol>
+		<h2>Cons</h2>
 		<ol>
 			<li>Of course it's a redirect, not AJAX, but works beautifully as fallback on old browsers (i.e. IE10). 2 requests needed: POST then GET.</li>
 			<li>The @MountPath requires a trailing slash, i.e. <tt>/redirect/</tt> and not just <tt>/redirect</tt>.</li>
 			<li>Using <tt>&lt;wicket:link&gt;</tt>, it's not using the @MountPath but the long form.</li>
 			<li>The <tt>StatelessLink#onClick()</tt> and <tt>Checkbox AbstractWrapModel</tt> code is pretty verbose.</li>
 			<li>Requires <tt>wicketstuff's wicket-stateless</tt> (which rocks BTW :-)</li>
+			<li>Requires a stable <tt>setMarkupId()</tt></li>
 		</ol>
 		<p><wicket:link><a href="HomePage.html">« Home</a></wicket:link>
 	</div>

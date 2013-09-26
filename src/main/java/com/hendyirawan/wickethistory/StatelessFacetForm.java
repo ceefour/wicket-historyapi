@@ -76,7 +76,7 @@ public class StatelessFacetForm extends StatelessForm<Facet> {
 		sSize.add(new StatelessAjaxFormComponentUpdatingBehavior("click") {
 			@Override
 			protected PageParameters getPageParameters() {
-				return StatelessFacetForm.this.getPage().getPageParameters();
+				return StatelessFacetForm.this.getModelObject().toPageParameters();
 			}
 			
 			@Override
@@ -111,7 +111,7 @@ public class StatelessFacetForm extends StatelessForm<Facet> {
 		mSize.add(new StatelessAjaxFormComponentUpdatingBehavior("click") {
 			@Override
 			protected PageParameters getPageParameters() {
-				return StatelessFacetForm.this.getPage().getPageParameters();
+				return StatelessFacetForm.this.getModelObject().toPageParameters();
 			}
 			
 			@Override
@@ -146,7 +146,7 @@ public class StatelessFacetForm extends StatelessForm<Facet> {
 		lSize.add(new StatelessAjaxFormComponentUpdatingBehavior("click") {
 			@Override
 			protected PageParameters getPageParameters() {
-				return StatelessFacetForm.this.getPage().getPageParameters();
+				return StatelessFacetForm.this.getModelObject().toPageParameters();
 			}
 			
 			@Override

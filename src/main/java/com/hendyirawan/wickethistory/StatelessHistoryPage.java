@@ -34,13 +34,16 @@ public class StatelessHistoryPage extends WebPage {
 		data.add(new Label("sizeQNames", new PropertyModel<>(facetModel, "sizeQNames")));
 		add(data);
 		
-		add(new StatelessFacetForm("facetForm", facetModel) {
+		final StatelessFacetForm facetForm = new StatelessFacetForm("facetForm", facetModel) {
 			@Override
 			protected void onFacetChanged(AjaxRequestTarget target) {
 				super.onFacetChanged(target);
-				target.add(data);
+				target.add(data, this);
 			}
-		});
+		};
+		facetForm.setMarkupId("facetForm");
+		facetForm.setOutputMarkupId(true);
+		add(facetForm);
 	}
 	
 }
