@@ -1,5 +1,7 @@
 package com.hendyirawan.wickethistory;
 
+import java.net.URI;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -9,6 +11,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.Url;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +55,9 @@ public class Html5HistoryPage extends WebPage {
 			protected void onFacetChanged(AjaxRequestTarget target) {
 				super.onFacetChanged(target);
 				final PageParameters newParams = facetModel.getObject().toPageParameters();
-				CharSequence newUri = urlFor(getPageClass(), newParams);
+				// RequestUtils.toAbsolutePath() is not working properly because not taking @MountPath into account
+				final URI newUriParts = URI.create(getRequestCycle().getUrlRenderer().renderFullUrl(Url.parse(urlFor(getPageClass(), newParams))));
+				final String newUri = newUriParts.getPath() + (newUriParts.getQuery() != null ? "?" + newUriParts.getQuery() : "");
 				log.info("New URI: {}", newUri);
 				if (target != null) {
 					// http://wicketinaction.com/2013/02/replace-components-with-animation/

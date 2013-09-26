@@ -5,6 +5,7 @@
 	<style>
 	.sidebar { float: left; width: 200px; background: #eeeeee; }
 	.main-content { margin-left: 220px; }
+	a.active { background: yellow; } 
 	</style>
 </head>
 <body>
@@ -32,15 +33,17 @@
 		<ol>
 			<li>State is beautifully preserved.</li>
 			<li>Works flawlessly with all browsers, especially Googlebot.</li>
+			<li>Back/Forward button always works (state is "managed" by browser)</li>
 		</ol>
 		<h2>Cons</h2>
 		<ol>
-			<li>Of course it's a redirect, not AJAX, but works beautifully as fallback on old browsers (i.e. IE10). 2 requests needed: POST then GET.</li>
+			<li>Of course it's a redirect, not full AJAX, but works beautifully as fallback on old browsers (i.e. IE10). 2 requests needed: POST then GET.</li>
 			<li>The @MountPath requires a trailing slash, i.e. <tt>/redirect/</tt> and not just <tt>/redirect</tt>.</li>
 			<li>Using <tt>&lt;wicket:link&gt;</tt>, it's not using the @MountPath but the long form.</li>
 			<li>The <tt>StatelessLink#onClick()</tt> and <tt>Checkbox AbstractWrapModel</tt> code is pretty verbose.</li>
 			<li>Requires <tt>wicketstuff's wicket-stateless</tt> (which rocks BTW :-)</li>
 			<li>Requires a stable <tt>setMarkupId()</tt></li>
+			<li>No chance for animations/transitions</li>
 		</ol>
 		<p><wicket:link><a href="HomePage.html">« Home</a></wicket:link>
 	</div>

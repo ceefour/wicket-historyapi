@@ -1,6 +1,7 @@
 package com.hendyirawan.wickethistory;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.link.StatelessLink;
@@ -31,6 +32,15 @@ public class RedirectFacetForm extends StatelessForm<Facet> {
 						facet, facet.toPageParameters());
 				setResponsePage(getPage().getClass(), facet.toPageParameters());
 			}
+			
+			@Override
+			protected void onComponentTag(ComponentTag tag) {
+				super.onComponentTag(tag);
+				final Facet facet = RedirectFacetForm.this.getModelObject();
+				if ("dresses".equals(facet.getCategoryId())) {
+					tag.put("class", "active");
+				}
+			}
 		});
 		add(new StatelessLink<Void>("shoesLink") {
 			@Override
@@ -41,6 +51,15 @@ public class RedirectFacetForm extends StatelessForm<Facet> {
 						facet, facet.toPageParameters());
 				setResponsePage(getPage().getClass(), facet.toPageParameters());
 			}
+			
+			@Override
+			protected void onComponentTag(ComponentTag tag) {
+				super.onComponentTag(tag);
+				final Facet facet = RedirectFacetForm.this.getModelObject();
+				if ("shoes".equals(facet.getCategoryId())) {
+					tag.put("class", "active");
+				}
+			}
 		});
 		add(new StatelessLink<Void>("bagsLink") {
 			@Override
@@ -50,6 +69,15 @@ public class RedirectFacetForm extends StatelessForm<Facet> {
 				log.info("Clicked Bags link, facet is now: {}, new PageParams: {}",
 						facet, facet.toPageParameters());
 				setResponsePage(getPage().getClass(), facet.toPageParameters());
+			}
+			
+			@Override
+			protected void onComponentTag(ComponentTag tag) {
+				super.onComponentTag(tag);
+				final Facet facet = RedirectFacetForm.this.getModelObject();
+				if ("bags".equals(facet.getCategoryId())) {
+					tag.put("class", "active");
+				}
 			}
 		});
 		

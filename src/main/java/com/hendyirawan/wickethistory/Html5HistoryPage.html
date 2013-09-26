@@ -29,6 +29,10 @@
 			<p>Current category: <wicket:container wicket:id="categoryId">categoryId</wicket:container>
 			<p>Current sizes: <wicket:container wicket:id="sizeQNames">sizeQNames</wicket:container>
 		</section>
+		<h2>TODO</h2>
+		<ol>
+			<li>Back/Forward button not yet working as intended</li>
+		</ol>
 		<h2>Pros</h2>
 		<ol>
 			<li>Facet state can be preserved <strong>fully</strong> using <tt>Html5AjaxFallbackLink#getNewPageParameters()</tt> (new component) + <tt>StatelessAjaxFormComponentUpdatingBehavior#getPageParameters()</tt> during AJAX navigation (link) &amp; AJAX form submits too.</li>
@@ -47,6 +51,7 @@
 			<li>Requires a stable <tt>setMarkupId()</tt></li>
 			<li>Requires AJAX support, so <tt>onClick()</tt> i.e. the AJAX fallback link won't preserve state on less JavaScript-friendly browsers (e.g. Googlebot?).
 				For proper non-JavaScript support, you need <tt>submit</tt> button on <tt>StatelessForm</tt>s.</li>
+			<li>Need special support (client-side JavaScript) for Back/Forward button functionality</li>
 		</ol>
 		<p><wicket:link><a href="HomePage.html">« Home</a></wicket:link>
 	</div>

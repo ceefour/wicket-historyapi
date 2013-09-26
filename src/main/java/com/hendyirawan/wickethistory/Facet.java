@@ -10,6 +10,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableSet;
 
 /**
@@ -43,7 +44,7 @@ public class Facet implements Serializable {
 	
 	public PageParameters toPageParameters() {
 		return new PageParameters().set("categoryId", categoryId)
-				.set("sizes", Joiner.on(",").join(sizeQNames));
+				.set("sizes", Strings.emptyToNull(Joiner.on(",").join(sizeQNames)));
 	}
 
 	@Override
