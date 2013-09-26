@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+<head>
+	<title>HTML5 History API</title>
+	<style>
+	.sidebar { float: left; width: 200px; background: #eeeeee; }
+	.main-content { margin-left: 220px; }
+	a.active { background: yellow; } 
+	</style>
+</head>
+<body>
+	<h1>HTML5 History API</h1>
+	<p>Using wicket-stateless for AJAX + HTML5 history API (abstracted by <a href="https://github.com/browserstate/history.js/blob/master/scripts/bundled/html5/jquery.history.js">jquery.history.js</a>), page is fully stateless.</p>
+	<div class="sidebar">
+		<form wicket:id="facetForm">
+			<h2>Categories</h2>
+			<p><a href="#" wicket:id="dressesLink">Dresses</a>
+			<p><a href="#" wicket:id="shoesLink">Shoes</a>
+			<p><a href="#" wicket:id="bagsLink">Bags</a>
+			<h2>Sizes</h2>
+			<label><input type="checkbox" wicket:id="sSize"> S</input></label>
+			<label><input type="checkbox" wicket:id="mSize"> M</input></label>
+			<label><input type="checkbox" wicket:id="lSize"> L</input></label>
+		</form>
+	</div>
+	<div class="main-content">
+		<section wicket:id="data">
+			<h2>Data</h2>
+			<p>Current category: <wicket:container wicket:id="categoryId">categoryId</wicket:container>
+			<p>Current sizes: <wicket:container wicket:id="sizeQNames">sizeQNames</wicket:container>
+		</section>
+		<h2>Pros</h2>
+		<ol>
+			<li>Facet state can be preserved <strong>fully</strong> using <tt>Html5AjaxFallbackLink#getNewPageParameters()</tt> (new component) + <tt>StatelessAjaxFormComponentUpdatingBehavior#getPageParameters()</tt> during AJAX navigation (link) &amp; AJAX form submits too.</li>
+			<li>Saves bandwidth &amp; latency</li>
+			<li>Can use animated transitions</li>
+			<li>Page stays stateless: SEO-friendly, doesn't use session storage</li>
+			<li>No hashbang issues</li>
+		</ol>
+		<h2>Cons</h2>
+		<ol>
+			<li>Won't work in older browsers, e.g. IE10.</li>
+			<li>The @MountPath requires a trailing slash, i.e. <tt>/redirect/</tt> and not just <tt>/redirect</tt>.</li>
+			<li>Using <tt>&lt;wicket:link&gt;</tt>, it's not using the @MountPath but the long form.</li>
+			<li>The <tt>StatelessLink#onClick()</tt> and <tt>Checkbox AbstractWrapModel</tt> code is pretty verbose.</li>
+			<li>Requires <tt>wicketstuff's wicket-stateless</tt> (which rocks BTW :-)</li>
+			<li>Requires a stable <tt>setMarkupId()</tt></li>
+			<li>Requires AJAX support, so <tt>onClick()</tt> i.e. the AJAX fallback link won't preserve state on less JavaScript-friendly browsers (e.g. Googlebot?).
+				For proper non-JavaScript support, you need <tt>submit</tt> button on <tt>StatelessForm</tt>s.</li>
+		</ol>
+		<p><wicket:link><a href="HomePage.html">« Home</a></wicket:link>
+	</div>
+</body>
+</html>

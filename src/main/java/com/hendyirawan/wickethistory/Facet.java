@@ -2,9 +2,9 @@ package com.hendyirawan.wickethistory;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
@@ -21,7 +21,7 @@ public class Facet implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String categoryId;
-	private final Set<String> sizeQNames = new HashSet<>();
+	private final Set<String> sizeQNames = new TreeSet<>();
 
 	public Facet(PageParameters params) {
 		super();
