@@ -13,8 +13,8 @@ import org.wicketstuff.annotation.mount.MountPath;
  *
  * @author ceefour
  */
-@MountPath("redirect/${categoryId}")
-public class RedirectHistoryPage extends WebPage {
+@MountPath("stateless/${categoryId}")
+public class StatelessHistoryPage extends WebPage {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -23,7 +23,7 @@ public class RedirectHistoryPage extends WebPage {
 	/**
 	 * @param parameters
 	 */
-	public RedirectHistoryPage(PageParameters parameters) {
+	public StatelessHistoryPage(PageParameters parameters) {
 		super(parameters);
 		final Model<Facet> facetModel = new Model<>(new Facet(getPageParameters()));
 		
@@ -34,11 +34,11 @@ public class RedirectHistoryPage extends WebPage {
 		data.add(new Label("sizeQNames", new PropertyModel<>(facetModel, "sizeQNames")));
 		add(data);
 		
-		add(new RedirectFacetForm("facetForm", facetModel) {
+		add(new StatelessFacetForm("facetForm", facetModel) {
 			@Override
 			protected void onFacetChanged(AjaxRequestTarget target) {
 				super.onFacetChanged(target);
-				//target.add(data);
+				target.add(data);
 			}
 		});
 	}

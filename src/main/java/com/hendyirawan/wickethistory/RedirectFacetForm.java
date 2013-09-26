@@ -15,17 +15,17 @@ import org.wicketstuff.stateless.StatelessAjaxFormComponentUpdatingBehavior;
  *
  * @author ceefour
  */
-public class FacetForm extends StatelessForm<Facet> {
+public class RedirectFacetForm extends StatelessForm<Facet> {
 
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = LoggerFactory.getLogger(FacetForm.class);
+	private static final Logger log = LoggerFactory.getLogger(RedirectFacetForm.class);
 
-	public FacetForm(String id, IModel<Facet> model) {
+	public RedirectFacetForm(String id, IModel<Facet> model) {
 		super(id, model);
 		add(new StatelessLink<Void>("dressesLink") {
 			@Override
 			public void onClick() {
-				final Facet facet = FacetForm.this.getModelObject();
+				final Facet facet = RedirectFacetForm.this.getModelObject();
 				facet.setCategoryId("dresses");
 				log.info("Clicked Dresses link, facet is now: {}, new PageParams: {}",
 						facet, facet.toPageParameters());
@@ -35,7 +35,7 @@ public class FacetForm extends StatelessForm<Facet> {
 		add(new StatelessLink<Void>("shoesLink") {
 			@Override
 			public void onClick() {
-				final Facet facet = FacetForm.this.getModelObject();
+				final Facet facet = RedirectFacetForm.this.getModelObject();
 				facet.setCategoryId("shoes");
 				log.info("Clicked Shoes link, facet is now: {}, new PageParams: {}",
 						facet, facet.toPageParameters());
@@ -45,7 +45,7 @@ public class FacetForm extends StatelessForm<Facet> {
 		add(new StatelessLink<Void>("bagsLink") {
 			@Override
 			public void onClick() {
-				final Facet facet = FacetForm.this.getModelObject();
+				final Facet facet = RedirectFacetForm.this.getModelObject();
 				facet.setCategoryId("bags");
 				log.info("Clicked Bags link, facet is now: {}, new PageParams: {}",
 						facet, facet.toPageParameters());
@@ -56,7 +56,7 @@ public class FacetForm extends StatelessForm<Facet> {
 		final CheckBox sSize = new CheckBox("sSize", new AbstractWrapModel<Boolean>() {
 			@Override
 			public IModel<Facet> getWrappedModel() {
-				return FacetForm.this.getModel();
+				return RedirectFacetForm.this.getModel();
 			}
 			
 			@Override
@@ -76,14 +76,14 @@ public class FacetForm extends StatelessForm<Facet> {
 		sSize.add(new StatelessAjaxFormComponentUpdatingBehavior("click") {
 			@Override
 			protected PageParameters getPageParameters() {
-				return FacetForm.this.getPage().getPageParameters();
+				return RedirectFacetForm.this.getPage().getPageParameters();
 			}
 			
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
-				final Facet facet = FacetForm.this.getModelObject();
+				final Facet facet = RedirectFacetForm.this.getModelObject();
 				log.info("Checkbox S clicked, PageParams was: {}, facet is now: {}",
-						getPageParameters(), FacetForm.this.getModelObject());
+						getPageParameters(), RedirectFacetForm.this.getModelObject());
 				onFacetChanged(target);
 				setResponsePage(getPage().getClass(), facet.toPageParameters());
 			}
@@ -92,7 +92,7 @@ public class FacetForm extends StatelessForm<Facet> {
 		final CheckBox mSize = new CheckBox("mSize", new AbstractWrapModel<Boolean>() {
 			@Override
 			public IModel<Facet> getWrappedModel() {
-				return FacetForm.this.getModel();
+				return RedirectFacetForm.this.getModel();
 			}
 			
 			@Override
@@ -112,14 +112,14 @@ public class FacetForm extends StatelessForm<Facet> {
 		mSize.add(new StatelessAjaxFormComponentUpdatingBehavior("click") {
 			@Override
 			protected PageParameters getPageParameters() {
-				return FacetForm.this.getPage().getPageParameters();
+				return RedirectFacetForm.this.getPage().getPageParameters();
 			}
 			
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
-				final Facet facet = FacetForm.this.getModelObject();
+				final Facet facet = RedirectFacetForm.this.getModelObject();
 				log.info("Checkbox M clicked, PageParams was: {}, facet is now: {}",
-						getPageParameters(), FacetForm.this.getModelObject());
+						getPageParameters(), RedirectFacetForm.this.getModelObject());
 				onFacetChanged(target);
 				setResponsePage(getPage().getClass(), facet.toPageParameters());
 			}
@@ -128,7 +128,7 @@ public class FacetForm extends StatelessForm<Facet> {
 		final CheckBox lSize = new CheckBox("lSize", new AbstractWrapModel<Boolean>() {
 			@Override
 			public IModel<Facet> getWrappedModel() {
-				return FacetForm.this.getModel();
+				return RedirectFacetForm.this.getModel();
 			}
 			
 			@Override
@@ -148,14 +148,14 @@ public class FacetForm extends StatelessForm<Facet> {
 		lSize.add(new StatelessAjaxFormComponentUpdatingBehavior("click") {
 			@Override
 			protected PageParameters getPageParameters() {
-				return FacetForm.this.getPage().getPageParameters();
+				return RedirectFacetForm.this.getPage().getPageParameters();
 			}
 			
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
-				final Facet facet = FacetForm.this.getModelObject();
+				final Facet facet = RedirectFacetForm.this.getModelObject();
 				log.info("Checkbox L clicked, PageParams was: {}, facet is now: {}",
-						getPageParameters(), FacetForm.this.getModelObject());
+						getPageParameters(), RedirectFacetForm.this.getModelObject());
 				onFacetChanged(target);
 				setResponsePage(getPage().getClass(), facet.toPageParameters());
 			}
